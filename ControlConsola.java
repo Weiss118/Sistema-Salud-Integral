@@ -9,7 +9,6 @@ public class ControlConsola {
     public ControlConsola() {
         control = new Control();
         scanner = new Scanner(System.in);
-        // Carga automática al iniciar con manejo de errores visual
         try {
             control.cargarArchivo();
             System.out.println(">> Sistema iniciado. Datos cargados correctamente.");
@@ -73,7 +72,6 @@ public class ControlConsola {
             System.out.print("Nombre: ");
             String nombre = scanner.nextLine();
 
-            // Reutilizamos método para selección segura de Enums
             Tipo tipo = (Tipo) elegirEnum(Tipo.values(), "Tipo");
             Condicion cond = (Condicion) elegirEnum(Condicion.values(), "Condición");
             Forma forma = (Forma) elegirEnum(Forma.values(), "Forma");
@@ -88,7 +86,6 @@ public class ControlConsola {
 
             Instrumento nuevo = new Instrumento(clave, nombre, tipo, cond, forma, autor, eva, cita);
 
-            // --- COMUNICACIÓN CON CONTROL ---
             boolean registrado = control.agregarInstrumento(nuevo);
 
             if (registrado) {
@@ -135,7 +132,6 @@ public class ControlConsola {
 
             switch (op) {
                 case 1:
-                    // FALTABA ESTO: Pedir el dato y llamar al control
                     System.out.print("Ingrese nombre del autor: ");
                     String autor = scanner.nextLine();
                     res = control.consultarPorAutor(autor);
@@ -160,7 +156,6 @@ public class ControlConsola {
                     System.out.println("Opción no válida dentro de consultas.");
             }
 
-            // FALTABA ESTO: Mostrar los resultados obtenidos
             mostrarLista(res);
 
         } catch (NumberFormatException e) {
